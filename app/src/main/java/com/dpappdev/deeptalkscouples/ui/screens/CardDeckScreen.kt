@@ -9,18 +9,28 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.dpappdev.deeptalkscouples.model.Card
 import com.dpappdev.deeptalkscouples.model.CardData
 import com.dpappdev.deeptalkscouples.ui.components.SwipeableCard
+import kotlin.random.Random
 
 @Composable
 fun CardDeckScreen(
     modifier: Modifier = Modifier
 ) {
     val cards = remember { CardData.sampleCards }
-    var currentIndex by remember { mutableStateOf(0) }
+    
+    // Function to get a random card from the deck
+    fun getRandomCard(): Card {
+        return cards[Random.nextInt(cards.size)]
+    }
+    
+    var currentCard by remember { mutableStateOf(getRandomCard()) }
+    var nextCard by remember { mutableStateOf(getRandomCard()) }
+    var currentCardKey by remember { mutableStateOf(0) }
+    var nextCardKey by remember { mutableStateOf(1) }
 
     Box(
         modifier = modifier
@@ -66,81 +76,32 @@ fun CardDeckScreen(
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .weight(1f),
-                contentAlignment = Alignment.Center
-            ) {
-                if (currentIndex < cards.size) {
-                    // Show next card (behind) - same position as top card
-                    if (currentIndex + 1 < cards.size) {
-                        val nextCard = cards[currentIndex + 1]
-                        key(nextCard.id) {
-                            SwipeableCard(
-                                question = nextCard.question,
-                                category = nextCard.category,
-                                isTopCard = false
-                            )
-                        }
-                    }
-
-                    // Show current card (on top) - same position
-                    val currentCard = cards[currentIndex]
-                    key(currentCard.id) {
-                        SwipeableCard(
-                            question = currentCard.question,
-                            category = currentCard.category,
-                            isTopCard = true,
-                            onSwiped = {
-                                currentIndex++
-                            }
-                        )
-                    }
-                } else {
-                    // All cards swiped
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center,
-                        modifier = Modifier.padding(32.dp)
-                    ) {
-                        Text(
-                            text = "🎉",
-                            fontSize = 64.sp
-                        )
-                        
-                        Spacer(modifier = Modifier.height(16.dp))
-                        
-                        Text(
-                            text = "All cards explored!",
-                            fontSize = 24.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = Color(0xFFFF6B9D),
-                            textAlign = TextAlign.Center
-                        )
-                        
-                        Spacer(modifier = Modifier.height(8.dp))
-                        
-                        Text(
-                            text = "Great conversations ahead",
-                            fontSize = 16.sp,
-                            color = Color(0xFF666666),
-                            textAlign = TextAlign.Center
-                        )
-                    }
-                }
-            }
-
-            // Footer - Card counter
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
+                    .weight(1f)
                     .padding(bottom = 48.dp),
                 contentAlignment = Alignment.Center
             ) {
-                if (currentIndex < cards.size) {
-                    Text(
-                        text = "${currentIndex + 1} / ${cards.size}",
-                        fontSize = 14.sp,
-                        fontWeight = FontWeight.Medium,
-                        color = Color(0xFF999999)
+                // Show next card (behind) - same position as top card
+                key(nextCardKey) {
+                    SwipeableCard(
+                        question = nextCard.question,
+                        category = nextCard.category,
+                        isTopCard = false
+                    )
+                }
+
+                // Show current card (on top) - same position
+                key(currentCardKey) {
+                    SwipeableCard(
+                        question = currentCard.question,
+                        category = currentCard.category,
+                        isTopCard = true,
+                        onSwiped = {
+                            // Move next card to current, and get a new random next card
+                            currentCard = nextCard
+                            currentCardKey = nextCardKey
+                            nextCard = getRandomCard()
+                            nextCardKey++
+                        }
                     )
                 }
             }
