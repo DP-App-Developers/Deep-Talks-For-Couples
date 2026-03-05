@@ -69,7 +69,6 @@ fun CardDeckScreen(
                 key(nextCardKey) {
                     SwipeableCard(
                         question = nextCard.question,
-                        category = nextCard.category,
                         isTopCard = false
                     )
                 }
@@ -78,7 +77,6 @@ fun CardDeckScreen(
                 key(currentCardKey) {
                     SwipeableCard(
                         question = currentCard.question,
-                        category = currentCard.category,
                         isTopCard = true,
                         onSwiped = {
                             // Move next card to current, and get a new random next card

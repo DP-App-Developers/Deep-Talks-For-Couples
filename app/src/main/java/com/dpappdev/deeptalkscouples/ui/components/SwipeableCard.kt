@@ -26,7 +26,6 @@ import kotlin.math.abs
 @Composable
 fun SwipeableCard(
     question: String,
-    category: String,
     modifier: Modifier = Modifier,
     onSwiped: () -> Unit = {},
     isTopCard: Boolean = true
