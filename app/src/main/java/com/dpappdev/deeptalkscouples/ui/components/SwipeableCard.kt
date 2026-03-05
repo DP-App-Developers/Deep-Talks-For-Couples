@@ -120,14 +120,14 @@ fun SwipeableCard(
                 verticalArrangement = Arrangement.Center
             ) {
                 Text(
-                    text = category.uppercase(),
-                    fontSize = 12.sp,
+                    text = "Deep Talks",
+                    fontSize = 16.sp,
                     fontWeight = FontWeight.SemiBold,
                     color = Color.White.copy(alpha = 0.8f),
                     letterSpacing = 2.sp
                 )
                 
-                Spacer(modifier = Modifier.height(24.dp))
+                Spacer(modifier = Modifier.height(36.dp))
                 
                 Text(
                     text = question,

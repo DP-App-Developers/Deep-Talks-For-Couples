@@ -2,6 +2,7 @@ package com.dpappdev.deeptalkscouples.ui.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -46,38 +47,22 @@ fun CardDeckScreen(
     ) {
         Column(
             modifier = Modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
         ) {
-            // Header
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 60.dp, bottom = 32.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Text(
-                    text = "Deep Talks",
-                    fontSize = 32.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color(0xFFFF6B9D)
-                )
-                
-                Spacer(modifier = Modifier.height(8.dp))
-                
-                Text(
-                    text = "Swipe to explore",
-                    fontSize = 16.sp,
-                    color = Color(0xFF666666),
-                    fontWeight = FontWeight.Medium
-                )
-            }
+            Text(
+                text = "Swipe to explore",
+                fontSize = 16.sp,
+                color = Color(0xFF666666),
+                fontWeight = FontWeight.Medium,
+                modifier = Modifier.padding(bottom = 32.dp)
+            )
 
             // Card Stack
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .weight(1f)
-                    .padding(bottom = 48.dp),
+                    .wrapContentHeight(),
                 contentAlignment = Alignment.Center
             ) {
                 // Show next card (behind) - same position as top card
