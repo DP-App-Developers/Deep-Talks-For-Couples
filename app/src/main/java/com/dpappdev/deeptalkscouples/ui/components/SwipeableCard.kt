@@ -38,6 +38,7 @@ fun SwipeableCard(
     val offsetX = remember { Animatable(0f) }
     val offsetY = remember { Animatable(0f) }
     val rotation = remember { Animatable(0f) }
+    val alpha = remember { Animatable(1f) }
     val scope = rememberCoroutineScope()
     var isSwiping by remember { mutableStateOf(false) }
 
@@ -61,6 +62,7 @@ fun SwipeableCard(
                 translationX = offsetX.value
                 translationY = offsetY.value
                 rotationZ = rotation.value
+                this.alpha = alpha.value
             }
             .pointerInput(Unit) {
                 if (isTopCard && !isSwiping) {
@@ -74,13 +76,19 @@ fun SwipeableCard(
                                     launch {
                                         offsetX.animateTo(
                                             targetValue = targetX,
-                                            animationSpec = tween(300)
+                                            animationSpec = tween(400)
                                         )
                                     }
                                     launch {
                                         rotation.animateTo(
                                             targetValue = if (offsetX.value > 0) 45f else -45f,
-                                            animationSpec = tween(300)
+                                            animationSpec = tween(400)
+                                        )
+                                    }
+                                    launch {
+                                        alpha.animateTo(
+                                            targetValue = 0f,
+                                            animationSpec = tween(400)
                                         )
                                     }.invokeOnCompletion {
                                         // Call onSwiped after animation completes

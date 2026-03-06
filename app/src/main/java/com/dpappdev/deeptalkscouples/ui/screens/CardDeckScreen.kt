@@ -16,6 +16,8 @@ import androidx.compose.ui.unit.sp
 import com.dpappdev.deeptalkscouples.model.Card
 import com.dpappdev.deeptalkscouples.model.CardData
 import com.dpappdev.deeptalkscouples.ui.components.SwipeableCard
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kotlin.random.Random
 
 @Composable
@@ -23,6 +25,7 @@ fun CardDeckScreen(
     modifier: Modifier = Modifier
 ) {
     val cards = remember { CardData.sampleCards }
+    val scope = rememberCoroutineScope()
     
     // Function to get a random card ID from the deck
     fun getRandomCardId(): Int {
@@ -86,11 +89,15 @@ fun CardDeckScreen(
                         questionResId = currentCard.questionResId,
                         isTopCard = true,
                         onSwiped = {
-                            // Move next card to current, and get a new random next card
-                            currentCardId = nextCardId
-                            currentCardKey = nextCardKey
-                            nextCardId = getRandomCardId()
-                            nextCardKey++
+                            // Delay state update to allow animation to complete smoothly
+                            scope.launch {
+                                delay(100) // Small delay after animation completes
+                                // Move next card to current, and get a new random next card
+                                currentCardId = nextCardId
+                                currentCardKey = nextCardKey
+                                nextCardId = getRandomCardId()
+                                nextCardKey++
+                            }
                         }
                     )
                 }
