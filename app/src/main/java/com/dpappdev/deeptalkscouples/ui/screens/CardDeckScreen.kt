@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -23,15 +24,20 @@ fun CardDeckScreen(
 ) {
     val cards = remember { CardData.sampleCards }
     
-    // Function to get a random card from the deck
-    fun getRandomCard(): Card {
-        return cards[Random.nextInt(cards.size)]
+    // Function to get a random card ID from the deck
+    fun getRandomCardId(): Int {
+        return cards[Random.nextInt(cards.size)].id
     }
     
-    var currentCard by remember { mutableStateOf(getRandomCard()) }
-    var nextCard by remember { mutableStateOf(getRandomCard()) }
-    var currentCardKey by remember { mutableStateOf(0) }
-    var nextCardKey by remember { mutableStateOf(1) }
+    // Store card IDs instead of Card objects (Ints are automatically saveable)
+    var currentCardId by rememberSaveable { mutableStateOf(getRandomCardId()) }
+    var nextCardId by rememberSaveable { mutableStateOf(getRandomCardId()) }
+    var currentCardKey by rememberSaveable { mutableStateOf(0) }
+    var nextCardKey by rememberSaveable { mutableStateOf(1) }
+    
+    // Get the actual Card objects from IDs
+    val currentCard = remember(currentCardId) { cards.first { it.id == currentCardId } }
+    val nextCard = remember(nextCardId) { cards.first { it.id == nextCardId } }
 
     Box(
         modifier = modifier
@@ -80,9 +86,9 @@ fun CardDeckScreen(
                         isTopCard = true,
                         onSwiped = {
                             // Move next card to current, and get a new random next card
-                            currentCard = nextCard
+                            currentCardId = nextCardId
                             currentCardKey = nextCardKey
-                            nextCard = getRandomCard()
+                            nextCardId = getRandomCardId()
                             nextCardKey++
                         }
                     )
