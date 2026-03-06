@@ -117,7 +117,7 @@ fun SwipeableCard(
             },
         shape = RoundedCornerShape(24.dp),
         elevation = CardDefaults.cardElevation(
-            defaultElevation = if (isTopCard) 8.dp else 4.dp
+            defaultElevation = 8.dp
         ),
         colors = CardDefaults.cardColors(
             containerColor = Color.White
