@@ -14,6 +14,9 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
@@ -39,11 +42,21 @@ fun SwipeableCard(
     var isSwiping by remember { mutableStateOf(false) }
 
     val swipeThreshold = 300f
+    
+    val configuration = LocalConfiguration.current
+    val isLandscape = configuration.screenWidthDp > configuration.screenHeightDp
 
     Card(
         modifier = modifier
-            .fillMaxWidth(0.9f)
-            .aspectRatio(0.7f)
+            .then(
+                if (isLandscape) {
+                    Modifier.fillMaxSize(0.85f)
+                } else {
+                    Modifier
+                        .fillMaxWidth(0.9f)
+                        .aspectRatio(0.7f)
+                }
+            )
             .graphicsLayer {
                 translationX = offsetX.value
                 translationY = offsetY.value

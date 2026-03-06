@@ -52,7 +52,8 @@ fun CardDeckScreen(
             )
     ) {
         Column(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
@@ -61,7 +62,7 @@ fun CardDeckScreen(
                 fontSize = 16.sp,
                 color = Color(0xFF666666),
                 fontWeight = FontWeight.Medium,
-                modifier = Modifier.padding(bottom = 32.dp)
+                modifier = Modifier.padding(bottom = 16.dp)
             )
 
             // Card Stack
