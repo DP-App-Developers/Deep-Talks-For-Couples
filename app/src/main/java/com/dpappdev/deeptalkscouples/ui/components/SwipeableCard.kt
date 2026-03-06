@@ -1,5 +1,6 @@
 package com.dpappdev.deeptalkscouples.ui.components
 
+import androidx.annotation.StringRes
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
@@ -16,6 +17,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -25,7 +27,7 @@ import kotlin.math.abs
 
 @Composable
 fun SwipeableCard(
-    question: String,
+    @StringRes questionResId: Int,
     modifier: Modifier = Modifier,
     onSwiped: () -> Unit = {},
     isTopCard: Boolean = true
@@ -129,7 +131,7 @@ fun SwipeableCard(
                 Spacer(modifier = Modifier.height(36.dp))
                 
                 Text(
-                    text = question,
+                    text = stringResource(id = questionResId),
                     fontSize = 24.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color.White,

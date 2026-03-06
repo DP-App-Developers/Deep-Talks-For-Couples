@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Deep Talks Couples</string>
+    
+    <!-- Card Questions - French -->
+    <string name="question_1">Quel est un rêve que tu n\'as jamais raconté à personne?</string>
+    <string name="question_2">Quel moment de ta vie t\'a fait te sentir le plus vivant(e)?</string>
+    <string name="question_3">Si tu pouvais revivre une journée ensemble, laquelle serait-ce?</string>
+    <string name="question_4">Qu\'est-ce que tu as peur de me demander?</string>
+    <string name="question_5">Que signifie l\'amour pour toi en ce moment?</string>
+    <string name="question_6">Quelle est une peur que tu aimerais surmonter ensemble?</string>
+    <string name="question_7">Quand te sens-tu le plus connecté(e) à moi?</string>
+    <string name="question_8">Quel est un talent secret que tu aimerais avoir?</string>
+    <string name="question_9">Quel est ton souvenir préféré de nous?</string>
+    <string name="question_10">Qu\'est-ce qui te fait te sentir le plus apprécié(e)?</string>
+</resources>

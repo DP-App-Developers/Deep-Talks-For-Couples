@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Deep Talks Couples</string>
+    
+    <!-- Card Questions - Traditional Chinese -->
+    <string name="question_1">你有什麼從未告訴過任何人的夢想？</string>
+    <string name="question_2">你生命中哪個時刻讓你感覺最有活力？</string>
+    <string name="question_3">如果你能重溫我們在一起的一天，會是哪一天？</string>
+    <string name="question_4">有什麼事情你害怕問我？</string>
+    <string name="question_5">此刻愛對你來說意味著什麼？</string>
+    <string name="question_6">你想和我一起克服什麼恐懼？</string>
+    <string name="question_7">什麼時候你感覺與我最親密？</string>
+    <string name="question_8">你希望擁有什麼秘密才能？</string>
+    <string name="question_9">你最喜歡我們之間的哪段回憶？</string>
+    <string name="question_10">什麼讓你感到最被珍惜？</string>
+</resources>
