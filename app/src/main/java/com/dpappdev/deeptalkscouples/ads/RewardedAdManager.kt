@@ -11,8 +11,9 @@ import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAdLoa
 
 private const val TAG = "RewardedAdManager"
 
-// Test ad unit ID — replace with your real AdMob ad unit ID before release
-private const val AD_UNIT_ID = "ca-app-pub-3940256099942544/5354046379"
+// Test ad unit ID: ca-app-pub-3940256099942544/5354046379
+// My AdMob unit ID: ca-app-pub-9315374730551337/4012802744
+private const val AD_UNIT_ID = "ca-app-pub-9315374730551337/4012802744"
 
 class RewardedAdManager(private val activity: Activity) {
 
