@@ -6,21 +6,21 @@ import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
-import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAd
-import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAdLoadCallback
+import com.google.android.gms.ads.rewarded.RewardedAd
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 
 private const val TAG = "RewardedAdManager"
 
-// Test ad unit ID: ca-app-pub-3940256099942544/5354046379
-// My AdMob unit ID: ca-app-pub-9315374730551337/4012802744
-private const val AD_UNIT_ID = "ca-app-pub-9315374730551337/4012802744"
+// Test ad unit ID: ca-app-pub-3940256099942544/5224354917
+// My AdMob unit ID: ca-app-pub-9315374730551337/1349499437
+private const val AD_UNIT_ID = "ca-app-pub-9315374730551337/1349499437"
 
 class RewardedAdManager(private val activity: Activity) {
 
     var isAdReady = false
         private set
 
-    private var rewardedAd: RewardedInterstitialAd? = null
+    private var rewardedAd: RewardedAd? = null
     private var isLoading = false
 
     // Called by MainActivity after MobileAds.initialize() completes
@@ -31,12 +31,12 @@ class RewardedAdManager(private val activity: Activity) {
     private fun loadAd() {
         if (isLoading) return
         isLoading = true
-        RewardedInterstitialAd.load(
+        RewardedAd.load(
             activity,
             AD_UNIT_ID,
             AdRequest.Builder().build(),
-            object : RewardedInterstitialAdLoadCallback() {
-                override fun onAdLoaded(ad: RewardedInterstitialAd) {
+            object : RewardedAdLoadCallback() {
+                override fun onAdLoaded(ad: RewardedAd) {
                     Log.d(TAG, "Ad loaded successfully")
                     rewardedAd = ad
                     isAdReady = true
